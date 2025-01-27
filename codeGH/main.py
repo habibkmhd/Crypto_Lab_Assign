@@ -24,11 +24,16 @@ def main(filename):
   except IOError as e:
     print(f"An error occurred while writing to the file vig-group2.plain")
 #################################################################################
-# Checking the length of the sanitized text
+# Correcting the length of the sanitized text
   length = len(plaintext)
-  if (length<200) or (length>600):
-    print("Input text is not of the correct length. Change text")
-    return
+  while (length<200 or length>600):
+    if (length<200):
+      print(f"Len: {length}, input text is too short, making it longer")
+      plaintext = plaintext+plaintext
+    if(length>600):
+      print(f"Len: {length}, input text is too long, making it shorter")
+      plaintext=plaintext[:599] # shorten text if too long
+    length= len(plaintext)
   
 #####################################################################
 # Iterate over the key and put it in parallel with each letter of the text to generate to 
