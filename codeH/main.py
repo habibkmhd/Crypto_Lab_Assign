@@ -32,10 +32,10 @@ def main():
         print(f"ERROR: Key must be at most {KEY_MAX_LENGTH} characters.")
         return
 
-    # Encrypt the plaintext
+    # encrypt plaintext by Vigenère cipher
     ciphertext = encrypt(plaintext, key, SE)
 
-    # Write the ciphertext
+    # write ciphertext into file
     try:
         with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
             f.write(ciphertext)

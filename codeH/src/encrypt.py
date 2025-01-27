@@ -41,7 +41,7 @@ def get_key(key_file, letters):
         print(f"ERROR: {key_file} not found")
         return None
 
-# encrypt plaintext using Vigenère cipher
+# encrypt plaintext by Vigenère cipher
 def encrypt(text, key, letters):
     REVERSE_LETTERS = {i: letter for letter, i in letters.items()}
     ciphertext = ""
