@@ -1,17 +1,16 @@
 from math import log10
 
-
-ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ'
+ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ"
 
 class ngram_score:
     def __init__(self, ngramfile):
         self.ngrams = {}
-        with open(ngramfile, 'r', encoding='utf-8') as f:  # Ensure correct encoding
+        with open(ngramfile, 'r', encoding='utf-8') as f:
             for line in f:
                 key, count = line.strip().split(' ')
-                if all(c in ALPHABET for c in key):  # Filter out unwanted n-grams
+                if all(c in ALPHABET for c in key):
                     self.ngrams[key] = int(count)
-        self.L = len(next(iter(self.ngrams)))  # Automatically detect n-gram length
+        self.L = len(next(iter(self.ngrams)))
         self.N = sum(self.ngrams.values())
         self.floor = log10(0.01 / self.N)
 
