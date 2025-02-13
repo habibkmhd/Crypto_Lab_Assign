@@ -4,6 +4,7 @@ import random
 from src.ngram import NGram
 from src.key import calc_ic, get_key_len, find_key
 from src.decrypt import decrypt
+from src.klen import find_klen
 
 # Define the alphabet used in encryption
 ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ"
@@ -35,7 +36,8 @@ def main():
     # STEP 2: Estimate key length using the Friedman test
     key_len = get_key_len(ciphertext, MAX_KEY_LEN)
     # If decrypting TAs' texts, use: 
-    #key_len = 123
+    #find_klen() #prints the expected key lengths for the 6 texts
+    #key_len = 123   # Half of them have the same expected key length 
 
     # STEP 3: Guess the encryption key using n-gram analysis
     key = find_key(ciphertext, key_len, ALPHABET, TRIGRAM, QGRAM)
