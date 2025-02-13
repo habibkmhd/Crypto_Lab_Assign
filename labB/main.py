@@ -11,7 +11,7 @@ MAX_KEY_LEN = 16  # Maximum key length for decryption
 # Get the absolute path of the current file and define the ciphertext file path
 path = os.path.abspath(__file__)
 path = os.path.dirname(path)
-CIPHERTEXT_PATH = path + "/ciphertext/vig_group19.crypto"
+CIPHERTEXT_PATH = path + "/ciphertext/vig_group2.crypto"
 
 # Load n-gram frequency models for trigrams and quadgrams
 TRIGRAM = NGram(path + "/letter_freqs/se_trigrams.txt", ALPHABET)
