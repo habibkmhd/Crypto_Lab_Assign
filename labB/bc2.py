@@ -1,9 +1,7 @@
-import os, sys
-import re
+import os
 
 from src.decrypt import decrypt
 from src.help_bc2 import do_slices_period
-import random
 
 path = os.path.abspath(__file__)
 path = os.path.dirname(path)
