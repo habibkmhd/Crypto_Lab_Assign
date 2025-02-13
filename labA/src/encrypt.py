@@ -1,5 +1,3 @@
-from src.alphabet import Alphabet
-
 # encrypt plaintext by Vigenère cipher
 def encrypt(text, key, alphabet):
     ciphertext = ""

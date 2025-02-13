@@ -10,4 +10,5 @@ def decrypt(text, key, alphabet):
             msg += i2a[(a2i[c] - a2i[key[i % len(key)]]) % len(alphabet)]
         else:
             msg += c
-    return msg  
+
+    return msg

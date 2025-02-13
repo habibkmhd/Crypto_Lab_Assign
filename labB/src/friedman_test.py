@@ -12,7 +12,7 @@ def calc_ic(text):
     return ic
 
 # estimate key length using Friedman-Test
-def est_key_len(text, max_key_len):
+def get_key_len(text, max_key_len):
     ics = []
     for key_len in range(1, max_key_len + 1):
         subgroups = [''.join(text[i::key_len]) for i in range(key_len)]

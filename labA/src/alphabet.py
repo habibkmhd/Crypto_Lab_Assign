@@ -2,6 +2,7 @@ import string
 
 class Alphabet:
     def __init__(self, lang="en"):
+        self.letters = string.ascii_lowercase
         self.letters = {letter: i for i, letter in enumerate(string.ascii_lowercase)}
 
         self.lang = lang
