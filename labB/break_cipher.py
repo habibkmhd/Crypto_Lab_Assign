@@ -4,11 +4,21 @@ from itertools import permutations
 from src.ngram_score import ngram_score, ALPHABET
 from src.friedman_test import calc_ic, est_key_len
 from src.decrypt import decrypt
+import random
 
 path = os.path.abspath(__file__)
 path = os.path.dirname(path)
 
-CIPHERTEXT_PATH = path + "/ciphertext/vig_group2.crypto"
+# To decrypt texts from students:
+n = random.choice([2,3,5,6,7,9,10,12,17,18,19,24])
+CIPHERTEXT_PATH = path + "/ciphertext/vig_group"+str(n)+".crypto"
+
+# To decrypt texts from the TAs (replace the line 'key_len =  est_key_len(ciphertext, MAX_KEY_LEN)' by 'key_len = 123')
+# since we found by 'bc2.py' that the key_len should be 123
+# now we also found that the key is 'HÄRPRESENTERARUPPSALAUNIVERSITETFORSKKINGMEDUTGÅNGSPUNKTFRÅNENAVUNIVERSITETETSMESTBERÖMDAPROFESSORERGENOMTIDERNACARLVONLINN'
+# so we can skip everything and directly go to 'res = decrypt(ciphertext, bestkey, ALPHABET)' with 'bestkey' the key above
+#m=random.choice([1,2,3,4,5,6])
+#CIPHERTEXT_PATH = path + "/ciphertext/"+ str(m)+".crypto"
 
 QGRAM = ngram_score(path + "/letter_freqs/se_quadgrams.txt")
 TRIGRAM = ngram_score(path + "/letter_freqs/se_trigrams.txt")
@@ -25,6 +35,7 @@ with open(CIPHERTEXT_PATH, "r", encoding="utf-8") as f:
 # STEP 2: get key length using Friedman-Test
 
 key_len = est_key_len(ciphertext, MAX_KEY_LEN)
+#key_len=123 #uncomment for decrypting texts from the TAs
 
 # STEP 3: break Vigenere cipher
 
@@ -58,6 +69,8 @@ for score, key, _ in candidates:
         bestkey = key
         bestscore = new_score
 
+res= decrypt(ciphertext, bestkey, ALPHABET)
+
 print(f"ciphertext: {os.path.basename(CIPHERTEXT_PATH)}")
 print(f"key lenth: {key_len}, key: {bestkey}")
-print(f"decrypted text: {decrypt(ciphertext, bestkey, ALPHABET)}")
+print(f"decrypted text: {res}")

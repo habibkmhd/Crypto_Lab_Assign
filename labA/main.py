@@ -5,11 +5,11 @@ from src.encrypt import *
 LANG = "se"
 
 # file paths
-INPUT_FILE = File("/home/halina/uni/Crypto_Lab_Assign/labA/input.txt")
-KEY_FILE = File("/home/halina/uni/Crypto_Lab_Assign/labA/vig_group2.key")
+INPUT_FILE = File("input.txt")
+KEY_FILE = File("vig_group2.key")
 
-PLAINTEXT_FILE = "/home/halina/uni/Crypto_Lab_Assign/labA/vig_group2.plain"
-CIPHERTEXT_FILE = "/home/halina/uni/Crypto_Lab_Assign/labA/vig_group2.crypto"
+PLAINTEXT_FILE = "vig_group2.plain"
+CIPHERTEXT_FILE = "vig_group2.crypto"
 
 # length constraints
 MIN_PLAINTEXT_LEN = 200
