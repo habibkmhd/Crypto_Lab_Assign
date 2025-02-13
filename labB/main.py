@@ -18,12 +18,13 @@ path = os.path.dirname(path)
 n = random.choice([2,3,5,6,7,9,10,12,17,18,19,24]) #choose a text at random to decrypt
 CIPHERTEXT_PATH = path + "/ciphertext/vig_group"+str(n)+".crypto"
 
-# To decrypt texts from the TAs (replace the line 'key_len =  est_key_len(ciphertext, MAX_KEY_LEN)' by 'key_len = 123')
-# since we found by 'klen.py' that the key_len should be 123
-# now we also found that the key is 'HÄRPRESENTERARUPPSALAUNIVERSITETFORSKKINGMEDUTGÅNGSPUNKTFRÅNENAVUNIVERSITETETSMESTBERÖMDAPROFESSORERGENOMTIDERNACARLVONLINN'
-# so we can skip everything and directly go to 'msg = decrypt(ciphertext, key, ALPHABET)' with 'bestkey' the key above
-m=random.choice([1,2,3,4,5,6])
-CIPHERTEXT_PATH = path + "/ciphertext/"+ str(m)+".crypto"
+# To decrypt texts from the TAs (replace the line 'key_len = get_key_len(ciphertext, MAX_KEY_LEN)' by 'key_len = 123')
+# since we found by find_klen() that the key_len should be 123
+# Now we know that the key is 'HÄRPRESENTERARUPPSALAUNIVERSITETFORSKKINGMEDUTGÅNGSPUNKTFRÅNENAVUNIVERSITETETSMESTBERÖMDAPROFESSORERGENOMTIDERNACARLVONLINN'
+# so we can skip STEP 3 and directly go to 'msg = decrypt(ciphertext, key, ALPHABET)' with 'key' the key above
+# uncomment: 
+#m=random.choice([1,2,3,4,5,6])
+#CIPHERTEXT_PATH = path + "/ciphertext/"+ str(m)+".crypto"
 
 # Load n-gram frequency models for trigrams and quadgrams
 TRIGRAM = NGram(path + "/letter_freqs/se_trigrams.txt", ALPHABET)
@@ -35,10 +36,11 @@ def main():
         ciphertext = f.read()
 
     # STEP 2: Estimate key length using the Friedman test
-    #key_len = get_key_len(ciphertext, MAX_KEY_LEN)
-    # If decrypting TAs' texts, use: 
-    find_klen() #prints the expected key lengths for the 6 texts
-    key_len = 123   # Half of them have the same expected key length 
+    key_len = get_key_len(ciphertext, MAX_KEY_LEN)
+    
+    # (STEP 2): If decrypting TAs' texts, uncomment: 
+    #find_klen() #prints the expected key lengths for the 6 texts
+    #key_len = 123   # Half of them have the same expected key length 
 
     # STEP 3: Guess the encryption key using n-gram analysis
     key = find_key(ciphertext, key_len, ALPHABET, TRIGRAM, QGRAM)
