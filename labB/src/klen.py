@@ -41,7 +41,9 @@ def find_klen():
     for m in range(1,7):
     
         # STEP 1: load ciphertext 
-        CIPHERTEXT_PATH = path + "/ciphertext/"+ str(m)+".crypto"
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # Go up two levels
+        CIPHERTEXT_PATH = os.path.join(base_dir, f"ciphertext/{m}.crypto")
+        
         with open(CIPHERTEXT_PATH, "r", encoding="utf-8") as f:
             ciphertext = f.read()
             
