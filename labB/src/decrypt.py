@@ -1,5 +1,4 @@
 # Decrypt ciphertext using a Vigenère cipher
-
 def decrypt(text, key, alphabet):
     a2i = {a: i for i, a in enumerate(alphabet)}  # Map letters to indices
     i2a = {i: a for i, a in enumerate(alphabet)}  # Map indices to letters
